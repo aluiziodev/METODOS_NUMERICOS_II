@@ -58,6 +58,11 @@ float dfNum_CubcError(float const x, float const dlt){
 } // Erro da ordem quadratica, Calc do erro dado por: -f^iv(x)*1/4*dlt^3/3  O(dlt^3)
 
 
+float df2_NewtonOrdem4_Fw(float const x, float const dlt){
+    return (45*x-154*(x+dlt)+214*(x+2*dlt)-156*(x+3*dlt)+61*(x+4*dlt)-10*(x+5*dlt))/12*dlt*dlt;
+}
+
+
 
 
 /*float dfNumN_FW(float const x, float const dlt, int const n){
