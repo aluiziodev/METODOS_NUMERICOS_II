@@ -6,7 +6,7 @@
 #include <algorithm>
 
 float f(float const x){
-    return sin(x)*powf(x, 3)*5;
+    return sqrt(exp(3*x)+4*x*x);
 }
 
 float dfNum1_FW(float const x, float const dlt){
@@ -60,6 +60,12 @@ float dfNum_CubcError(float const x, float const dlt){
 
 float df2_NewtonOrdem4_Fw(float const x, float const dlt){
     return (45*x-154*(x+dlt)+214*(x+2*dlt)-156*(x+3*dlt)+61*(x+4*dlt)-10*(x+5*dlt))/12*dlt*dlt;
+}
+
+// Derivada segunda com erro da ordem 4
+double dfNum2_Ordem4_Ct(double x, double dlt) {
+    return (-f(x + 2*dlt) + 16*f(x + dlt) - 30*f(x)
+            + 16*f(x - dlt) - f(x - 2*dlt)) / (12*dlt*dlt);
 }
 
 
