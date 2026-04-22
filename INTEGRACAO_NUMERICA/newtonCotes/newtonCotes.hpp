@@ -4,10 +4,8 @@
 #include <math.h>
 #include <vector>
 #include <algorithm>
-#include "../utils/function.hpp"
+#include "../../utils/function.hpp"
 
-
-#endif
 
 //FORMULAS FECHADAS
 
@@ -24,7 +22,7 @@ double intgNewtonCotesFechada_grau2(Function &f, double a, double b){
 }
 
 double intgNewtonCotesFechada_grau3(Function &f, double a, double b){
-    double h = (b-a)/2.0;
+    double h = (b-a)/3.0;
     double x0 = a;
     double x1 = a + h;
     double x2 = a + 2*h;
@@ -49,6 +47,22 @@ double intgNewtonCotesFechada_grau4(Function &f, double a, double b){
         7*f.value(x4)
     );
 
+}
+
+double intgNewtonCotesFechada(Function &f, double a, double b,int grau=4){
+    switch (grau){
+        case 1:
+            return intgNewtonCotesFechada_grau1(f, a, b);
+        case 2:
+            return intgNewtonCotesFechada_grau2(f, a, b);
+        case 3:
+            return intgNewtonCotesFechada_grau3(f, a, b);
+        case 4:
+            return intgNewtonCotesFechada_grau4(f, a, b);
+        default:
+            cout << "Grau inválido para a fórmula fechada." << endl;
+            return -1.0;
+    }
 }
 
 
@@ -92,7 +106,7 @@ double intgNewtonCotesAberta_grau4(Function &f, double a, double b){
     double x2 = a + 3*h;
     double x3 = a + 4*h;
     double x4 = a + 5*h;
-    return (5*h/24.0) * (
+    return (3*h/10.0) * (
         11*f.value(x0) -
         14*f.value(x1) +
         26*f.value(x2) -
@@ -101,3 +115,23 @@ double intgNewtonCotesAberta_grau4(Function &f, double a, double b){
     );
 
 }
+
+double intgNewtonCotesAberta(Function &f, double a, double b,int grau=4){
+    switch (grau){
+        case 1:
+            return intgNewtonCotesAberta_grau1(f, a, b);
+        case 2:
+            return intgNewtonCotesAberta_grau2(f, a, b);
+        case 3:
+            return intgNewtonCotesAberta_grau3(f, a, b);
+        case 4:
+            return intgNewtonCotesAberta_grau4(f, a, b);
+        default:
+            cout << "Grau inválido para a fórmula aberta." << endl;
+            return -1.0;
+    }
+}
+
+
+
+#endif
