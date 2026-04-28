@@ -2,7 +2,7 @@
 #include <math.h>
 #include <vector>
 #include <algorithm>
-#include "INTEGRACAO_NUMERICA/gaussLegendre/gaussLegendre.hpp" 
+#include "INTEGRACAO_NUMERICA/gaussLegendre/particionamento.hpp"
 #include "utils/function.hpp"
 
 using namespace std;
@@ -13,5 +13,18 @@ int main(){
     double b = 1;
     cout << "Resultado 2 pontos: " << intgGaussLegendre_2pontos(f1, a, b) << endl;
     cout << "Resultado 3 pontos: " << intgGaussLegendre_3pontos(f1, a, b) << endl;
+    cout << "Resultado 4 pontos: " << intgGaussLegendre_4pontos(f1, a, b) << endl;
+
+
+    cout << "INTEGRACAO NUMERICA - GAUSS-LEGENDRE" << endl;
+    cout << "-------------------------------------------------------------\n\n\n\n" << endl;
+    cout << "TESTE 1: f(x) = (sin(2*x) + 4*(x^2) + 3*x)^2, a = 0, b = 1" << endl;
+    cout << "-------------------------------------------------------------" << endl;
+    cout << "4 PONTOS" << endl;
+    cout << "Valor da integral: " << endl;
+    testPartition(partitionGaussLegendre, f1, 0, 1, 0.000001, 2);
+   
     return 0;
 }
+
+

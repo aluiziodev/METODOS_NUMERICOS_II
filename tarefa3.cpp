@@ -13,7 +13,7 @@ int main(){
     cout << "INTEGRACAO NUMERICA - NEWTON COTES" << endl;
     cout << "-------------------------------------------------------------\n\n\n\n" << endl;
 
-    cout << "TESTE 1: f(x) = x^4, a = 0, b = 1" << endl;
+    cout << "TESTE 1: f(x) = (sin(2*x) + 4*(x^2) + 3*x)^2, a = 0, b = 1" << endl;
     cout << "-------------------------------------------------------------" << endl;
     Function f1("(sin(2*x) + 4*(x^2) + 3*x)^2");
     cout << "GRAU 4 - FECHADA" << endl;
@@ -22,7 +22,7 @@ int main(){
     cout << "GRAU 4 - ABERTA" << endl;
     cout << "Valor da integral: " << endl;
     testAberta(partitionNewtonCotesAberta, f1, 0, 1, 1e-6, 3);
-    cout << "Valor exato: " << 17.8774 << endl << endl;
+
 
     /*cout << "TESTE 2: f(x) = x^2, a = 0, b = 1" << endl;
     cout << "-------------------------------------------------------------" << endl;

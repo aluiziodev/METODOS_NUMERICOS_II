@@ -62,15 +62,19 @@ void testAberta(double (*metodo)(Function&, double, double, int, int),
     double erro = 1.0;
     int iter = 0;
     cout << "Teste da Regra de Newton-Cotes Aberta" << endl;
+    cout << "Iteracao: " << iter << ", n: " << n << ", Integral: " << fixed << 
+            setprecision(6) << i << ", Erro: " << "N/A" << endl;
     while (erro > tol && iter < maxIter) {
-        cout << "Iteracao: " << iter << ", n: " << n << ", Integral: " << fixed << 
-        setprecision(6) << i << ", Erro: " << erro << endl;
         n *= 2;
         double j = metodo(f, a, b, n, grau);
 
         erro = fabs(j - i);
         i = j;
         iter++;
+        
+        cout << "Iteracao: " << iter << ", n: " << n << ", Integral: " << fixed << 
+        setprecision(6) << i << ", Erro: " << erro << endl;
+        
     }
 
     cout << "Resultado: " << i << endl;
