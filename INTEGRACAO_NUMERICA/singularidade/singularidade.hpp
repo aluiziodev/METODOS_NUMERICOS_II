@@ -64,7 +64,33 @@ double intgGaussLegendre_4pontos_expSimples(Function &f,
 }
 
 
+double intgGaussLegendre_4pontos_expDupla(Function &f,
+                                    double s0, double s1,
+                                    double a, double b){
+    double sqrt65 = sqrt(6.0 / 5.0);
 
+    double x1 =  sqrt((3.0 - 2.0*sqrt65) / 7.0);
+    double x2 =  sqrt((3.0 + 2.0*sqrt65) / 7.0);
+    double x3 = -x1;
+    double x4 = -x2;
+
+    double w1 = (18.0 + sqrt(30.0)) / 36.0;
+    double w2 = (18.0 - sqrt(30.0)) / 36.0;
+
+    double mid  = (s0 + s1)/2.0;
+    double half = (s1 - s0)/2.0;
+
+    auto F = [&](double s){
+        return f_expDupla(f, s, a, b);
+    };
+
+    return half * (
+        w1*F(mid + half*x1) +
+        w2*F(mid + half*x2) +
+        w1*F(mid + half*x3) +
+        w2*F(mid + half*x4)
+    );
+}
 
 
 #endif
