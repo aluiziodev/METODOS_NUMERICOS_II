@@ -2,9 +2,28 @@
 #define HOUSEHOLDER_QR_HPP
 #include "../utils/algebraLinear.hpp"
 
-// CAIXA PRETA 1: reduz matriz simétrica A a forma tridiagonal T = H^T A H
-Matriz householderTridiagonalizacao(Matriz A) {
+Matriz multiplicarMatrizes(const Matriz &A, const Matriz &B) {
     int n = A.size();
+    Matriz C(n, Vetor(n, 0.0));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            for (int k = 0; k < n; k++)
+                C[i][j] += A[i][k] * B[k][j];
+    return C;
+}
+
+void imprimirMatriz(const Matriz &A) {
+    for (const auto &linha : A) {
+        for (double v : linha) printf("%10.6f ", v);
+        printf("\n");
+    }
+}
+
+// CAIXA PRETA 1: reduz matriz simétrica A a forma tridiagonal T = H^T A H
+Matriz householderTridiagonalizacao(Matriz A, Matriz &Hacumulada) {
+    int n = A.size();
+    Hacumulada = identidade(n);
+
     for (int k = 0; k < n-2; k++) {
         Vetor x(n-k-1);
         for (int i = k+1; i < n; i++) x[i-k-1] = A[i][k];
@@ -16,13 +35,11 @@ Matriz householderTridiagonalizacao(Matriz A) {
         v[0] -= alpha;
         v = normalizar(v);
 
-        // H = I - 2*v*v^T (aplicado no bloco inferior-direito)
         Matriz H = identidade(n);
         for (int i = 0; i < (int)v.size(); i++)
             for (int j = 0; j < (int)v.size(); j++)
                 H[k+1+i][k+1+j] -= 2.0 * v[i] * v[j];
 
-        // A = H * A * H
         Matriz HA(n, Vetor(n, 0.0));
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
@@ -36,9 +53,11 @@ Matriz householderTridiagonalizacao(Matriz A) {
                     novoA[i][j] += HA[i][l] * H[l][j];
 
         A = novoA;
+        Hacumulada = multiplicarMatrizes(Hacumulada, H); // H = H1*H2*H3*...
     }
     return A;
 }
+
 
 // Um passo de decomposição QR via rotações de Givens (eficiente p/ tridiagonal)
 void passoQRGivens(Matriz &T) {
@@ -101,7 +120,8 @@ ResultadoQR iteracaoQR(Matriz T, double tol = 1e-10, int maxIter = 500) {
 
 // Pipeline completo: Householder -> QR (as "duas caixas pretas em sequência")
 ResultadoQR autovaloresSimetrica(const Matriz &A, double tol = 1e-10, int maxIter = 500) {
-    Matriz T = householderTridiagonalizacao(A);
+    Matriz Hdescartavel; // nao usada aqui, so para satisfazer a assinatura
+    Matriz T = householderTridiagonalizacao(A, Hdescartavel);
     return iteracaoQR(T, tol, maxIter);
 }
 #endif
