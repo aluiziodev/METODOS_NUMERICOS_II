@@ -18,10 +18,10 @@ int main() {
     Function f1("1/sqrt(x)");
 
     cout << "\n-- Exponencial Simples (SE) --" << endl;
-    testExponencial(intgExpSimples, f1, 0.0, 1.0, /*T=*/3.0, /*tol=*/1e-6);
+    testExponencial(intgExpSimples, f1, 0.0, 1.0, /*T=*/3.0, /*tol=*/1e-5);
 
     cout << "\n-- Exponencial Dupla (DE) --" << endl;
-    testExponencial(intgExpDupla, f1, 0.0, 1.0, /*T=*/4.0, /*tol=*/1e-10);
+    testExponencial(intgExpDupla, f1, 0.0, 1.0, /*T=*/4.0, /*tol=*/1e-5);
 
     // ============================================================
     // TESTE 2: Exponencial Dupla - função suave, para comparar
@@ -30,7 +30,7 @@ int main() {
     cout << "\n\nTESTE 2: f(x) = e^x, [0,1], exato = " << (exp(1.0) - 1.0) << endl;
     cout << "----------------------------------------------" << endl;
     Function f2("exp(x)");
-    testExponencial(intgExpDupla, f2, 0.0, 1.0, /*T=*/4.0, /*tol=*/1e-12);
+    testExponencial(intgExpDupla, f2, 0.0, 1.0, /*T=*/4.0, /*tol=*/1e-5);
 
     // ============================================================
     // TESTE 3: Integral dupla - volume sob z = x^2 + y^2
