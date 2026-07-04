@@ -18,10 +18,10 @@ int main(){
     Function f1("(sin(2*x) + 4*(x^2) + 3*x)^2");
     cout << "GRAU 4 - FECHADA" << endl;
     cout << "Valor da integral: " << endl;
-    testFechada(partitionNewtonCotesFechada, f1, 0, 1, 1e-6, 3);
+    testFechada(partitionNewtonCotesFechada, f1, 0, 1, 1e-6, 4);
     cout << "GRAU 4 - ABERTA" << endl;
     cout << "Valor da integral: " << endl;
-    testAberta(partitionNewtonCotesAberta, f1, 0, 1, 1e-6, 3);
+    testAberta(partitionNewtonCotesAberta, f1, 0, 1, 1e-6, 4);
 
 
     /*cout << "TESTE 2: f(x) = x^2, a = 0, b = 1" << endl;
