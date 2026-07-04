@@ -20,10 +20,15 @@ int main(){
     cout << "-------------------------------------------------------------\n\n\n\n" << endl;
     cout << "TESTE 1: f(x) = (sin(2*x) + 4*(x^2) + 3*x)^2, a = 0, b = 1" << endl;
     cout << "-------------------------------------------------------------" << endl;
-    cout << "4 PONTOS" << endl;
+    cout << "2 PONTOS" << endl;
     cout << "Valor da integral: " << endl;
     testPartition(partitionGaussLegendre, f1, 0, 1, 0.000001, 2);
-   
+    cout << "3 PONTOS" << endl;
+    cout << "Valor da integral: " << endl;
+    testPartition(partitionGaussLegendre, f1, 0, 1, 0.000001, 3);
+    cout << "4 PONTOS" << endl;
+    cout << "Valor da integral: " << endl;
+    testPartition(partitionGaussLegendre, f1, 0, 1, 0.000001, 4);
     return 0;
 }
 
