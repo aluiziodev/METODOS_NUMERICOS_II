@@ -1,6 +1,6 @@
 #ifndef HOUSEHOLDER_QR_HPP
 #define HOUSEHOLDER_QR_HPP
-#include "algebraLinear.hpp"
+#include "../utils/algebraLinear.hpp"
 
 // CAIXA PRETA 1: reduz matriz simétrica A a forma tridiagonal T = H^T A H
 Matriz householderTridiagonalizacao(Matriz A) {

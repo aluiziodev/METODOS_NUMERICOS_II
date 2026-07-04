@@ -1,6 +1,6 @@
 #ifndef METODO_POTENCIA_HPP
 #define METODO_POTENCIA_HPP
-#include "algebraLinear.hpp"
+#include "../utils/algebraLinear.hpp"
 #include <iostream>
 
 struct ResultadoAutovalor {
