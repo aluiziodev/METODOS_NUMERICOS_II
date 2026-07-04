@@ -2,7 +2,6 @@
 #include <math.h>
 #include "utils/function.hpp"
 #include "utils/function2D.hpp"
-#include "INTEGRACAO_NUMERICA/exponencial/exponencial.hpp"
 #include "INTEGRACAO_NUMERICA/gaussLegendre/integralDupla.hpp"
 
 using namespace std;
