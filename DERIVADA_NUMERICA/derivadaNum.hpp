@@ -8,7 +8,7 @@
 
 
 double dfNum1_FW(Function &f, double const x, double const dlt){
-    return (f.value(x+dlt)-f.value(dlt))/dlt;
+    return (f.value(x+dlt)-f.value(x))/dlt;
 }
 
 double dfNum1_BW(Function &f, double const x, double const dlt){
