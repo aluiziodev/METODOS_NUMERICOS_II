@@ -2,6 +2,14 @@
 #define HOUSEHOLDER_QR_HPP
 #include "../utils/algebraLinear.hpp"
 
+
+struct ResultadoQR {
+    Vetor autovalores;
+    int iteracoes;
+};
+
+
+
 Matriz multiplicarMatrizes(const Matriz &A, const Matriz &B) {
     int n = A.size();
     Matriz C(n, Vetor(n, 0.0));
@@ -19,7 +27,7 @@ void imprimirMatriz(const Matriz &A) {
     }
 }
 
-// CAIXA PRETA 1: reduz matriz simétrica A a forma tridiagonal T = H^T A H
+
 Matriz householderTridiagonalizacao(Matriz A, Matriz &Hacumulada) {
     int n = A.size();
     Hacumulada = identidade(n);
@@ -59,7 +67,6 @@ Matriz householderTridiagonalizacao(Matriz A, Matriz &Hacumulada) {
 }
 
 
-// Um passo de decomposição QR via rotações de Givens (eficiente p/ tridiagonal)
 void passoQRGivens(Matriz &T) {
     int n = T.size();
     Matriz Q = identidade(n);
@@ -79,7 +86,7 @@ void passoQRGivens(Matriz &T) {
             double q1 = Q[j][i], q2 = Q[j][i+1];
             Q[j][i]   =  c*q1 + s*q2;
             Q[j][i+1] =  -s*q1 + c*q2;
-            // (Q acumulado transposto; sinais ajustados para Q = produto de G^T)
+            
         }
     }
 
@@ -92,12 +99,7 @@ void passoQRGivens(Matriz &T) {
     T = novoT;
 }
 
-// CAIXA PRETA 2: itera QR sobre a matriz tridiagonal até convergir
-// para uma matriz (quase) diagonal, cuja diagonal são os autovalores
-struct ResultadoQR {
-    Vetor autovalores;
-    int iteracoes;
-};
+
 
 ResultadoQR iteracaoQR(Matriz T, double tol = 1e-10, int maxIter = 500) {
     int n = T.size();
@@ -118,7 +120,7 @@ ResultadoQR iteracaoQR(Matriz T, double tol = 1e-10, int maxIter = 500) {
     return {autovalores, maxIter};
 }
 
-// Pipeline completo: Householder -> QR (as "duas caixas pretas em sequência")
+
 ResultadoQR autovaloresSimetrica(const Matriz &A, double tol = 1e-10, int maxIter = 500) {
     Matriz Hdescartavel; // nao usada aqui, so para satisfazer a assinatura
     Matriz T = householderTridiagonalizacao(A, Hdescartavel);

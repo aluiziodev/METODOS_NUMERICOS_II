@@ -3,8 +3,7 @@
 #include "../../utils/function2D.hpp"
 #include "gaussLegendre.hpp"
 
-// Integral dupla de f(x,y) sobre o retângulo [ax,bx] x [ay,by],
-// usando Gauss-Legendre de 4 pontos em cada dimensão (aninhado).
+
 double intgDuplaGaussLegendre(Function2D &f, double ax, double bx,
                                double ay, double by) {
     double sqrt65 = sqrt(6.0 / 5.0);
@@ -37,13 +36,13 @@ double intgDuplaGaussLegendre(Function2D &f, double ax, double bx,
     return halfY * total;
 }
 
-// Área de uma região retangular (f(x,y) = 1)
+
 double areaRetangulo(double ax, double bx, double ay, double by) {
     Function2D um("1");
     return intgDuplaGaussLegendre(um, ax, bx, ay, by);
 }
 
-// Volume sob a superfície z = f(x,y), sobre [ax,bx] x [ay,by]
+
 double volumeSobSuperficie(Function2D &f, double ax, double bx,
                             double ay, double by) {
     return intgDuplaGaussLegendre(f, ax, bx, ay, by);

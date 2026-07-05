@@ -27,7 +27,7 @@ int main() {
     imprimirMatriz(H);
 
     // ---- PARTE 3: Metodos da potencia sobre A# ----
-    cout << "\n===== POTENCIA SOBRE A# =====" << endl;
+    cout << "\n---- POTENCIA SOBRE A# ----" << endl;
 
     auto pRegular = metodoPotencia(Atil, x0);
     cout << "Regular (maior): " << pRegular.autovalor
@@ -47,7 +47,7 @@ int main() {
     }
 
     // ---- PARTE 4: autovetores de A# -> autovetores de A (v_A = H * v_A#) ----
-    cout << "\n===== AUTOVETORES DE A (via H * v) =====" << endl;
+    cout << "\n---- AUTOVETORES DE A (via H * v) ----" << endl;
 
     Vetor vA_regular = matVec(H, pRegular.autovetor);
     cout << "Do maior autovalor: ";
@@ -67,13 +67,13 @@ int main() {
     }
 
     // ---- PARTE 5: autovalores de A (iguais aos de A#) ----
-    cout << "\n===== AUTOVALORES DE A =====" << endl;
+    cout << "\n---- AUTOVALORES DE A ----" << endl;
     cout << pRegular.autovalor << ", " << pInversa.autovalor << ", ";
     for (auto &r : intermediarios) cout << r.autovalor << ", ";
     cout << endl;
 
     // ---- Verificacao cruzada: pipeline Householder+QR (suas duas caixas pretas) ----
-    cout << "\n===== VERIFICACAO: pipeline autovaloresSimetrica() =====" << endl;
+    cout << "\n---- VERIFICACAO: pipeline autovaloresSimetrica() ----" << endl;
     auto resultadoQR = autovaloresSimetrica(A);
     cout << "Autovalores (Householder+QR): ";
     for (double lambda : resultadoQR.autovalores) cout << lambda << " ";

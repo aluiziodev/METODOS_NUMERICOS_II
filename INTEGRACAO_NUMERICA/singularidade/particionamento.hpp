@@ -5,25 +5,7 @@
 #include "../../utils/function.hpp"
 #include "singularidade.hpp"
 
-// =============================================================================
-// SOLUCAO 2 (Aula #14): transforma o problema original com singularidade em
-// x=a e/ou x=b (limites FINITOS) numa integral sobre toda a reta em s, via
-// exponencial simples ou dupla (ja implementadas em singularidade.hpp), e
-// resolve essa integral truncando-a em [-c, +c] com uma Gauss-Legendre
-// composta (particionada em n subintervalos de 4 pontos cada).
-//
-//      I = int_a^b f(x) dx = int_{-inf}^{+inf} fbar(s) ds
-//                          ~= int_{-c}^{+c} fbar(s) ds
-//                          ~= soma sobre as n particoes de GL-4pontos
-// =============================================================================
 
-
-// -----------------------------------------------------------------------
-// Composicao (particionamento) da integral em s no intervalo [-c, c],
-// usando n subintervalos e Gauss-Legendre de 4 pontos em cada um --
-// exatamente a mesma ideia de partitionGaussLegendre (particionamento.hpp),
-// so que aqui o integrando ja e f_expSimples/f_expDupla.
-// -----------------------------------------------------------------------
 
 double partitionSolucao2_expSimples(Function &f, double a, double b, double c, int n){
     double s0 = -c, s1 = c;
@@ -50,11 +32,6 @@ double partitionSolucao2_expDupla(Function &f, double a, double b, double c, int
 }
 
 
-// -----------------------------------------------------------------------
-// Para um valor de c fixo, refina n (dobrando) ate a variacao entre duas
-// iteracoes sucessivas ficar abaixo da tolerancia "tol" (igual filosofia
-// do testPartition() do particionamento.hpp).
-// -----------------------------------------------------------------------
 
 double refinaEmN_expSimples(Function &f, double a, double b, double c,
                              double tol, int nInicial = 4, int maxIter = 25){
@@ -89,17 +66,6 @@ double refinaEmN_expDupla(Function &f, double a, double b, double c,
 }
 
 
-// -----------------------------------------------------------------------
-// Roda a Solucao 2 completa para uma lista de valores crescentes de c,
-// refinando n em cada um deles, e imprime uma tabela igual a Tabela 3
-// da Aula 14 (c x I), tanto para exponencial simples quanto para dupla.
-//
-// CUIDADO (mencionado na Aula #14): na exponencial dupla aparecem termos
-// tipo exp(exp(s)), que estouram a representacao de ponto flutuante para
-// valores de c relativamente pequenos (tipicamente c > ~4). Por isso a
-// lista de valores de c testados para a dupla deve ser bem mais modesta
-// que a da simples.
-// -----------------------------------------------------------------------
 
 void testSolucao2(Function &f, double a, double b, double tol, vector<double> &cs_simples, 
     vector<double> &cs_dupla, double simetria = 1.0){

@@ -6,36 +6,6 @@
 
 using namespace std;
 
-// -----------------------------------------------------------------------
-// PROBLEMA 1:  I = int_{-1}^{1}  dx / cbrt(x^2)   = 6
-//   f(x) = 1 / (x^2)^(1/3)
-//
-//   ATENCAO: a singularidade aqui esta em x = 0, que e um ponto INTERIOR
-//   de [-1,1] (nao um dos extremos). As mudancas de variavel por
-//   exponencial simples/dupla foram deduzidas na Aula #13/#14 para
-//   singularidades NOS EXTREMOS a ou b -- se aplicadas diretamente em
-//   [-1,1], a singularidade cai exatamente no centro do dominio em s
-//   (s=0), e a convergencia da quadratura composta fica muito lenta
-//   (a integral ainda converge, mas exige n absurdamente grande para
-//   uma tolerancia de 1e-8, de forma parecida com o que a Aula #13
-//   mostrou ao tentar Newton-Cotes Fechada num ponto de singularidade
-//   nao removido).
-//
-//   Solucao: como f(x) = x^(-2/3) e uma funcao PAR, usa-se a simetria
-//            I = int_{-1}^{1} f(x) dx = 2 * int_{0}^{1} f(x) dx
-//   transformando o problema em uma integral em [0, 1] com singularidade
-//   NO EXTREMO x = 0 -- exatamente o mesmo tipo de problema tratado nos
-//   exemplos da Aula #13/#14 (lembra o exemplo 1/sqrt(x) em [0,1]).
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-// PROBLEMA 2:  I = int_{-2}^{0}  dx / sqrt(4 - x^2)  = pi/2
-//   f(x) = 1 / sqrt(4 - x^2)
-//   Singularidade no limite inferior x = -2 (caso classico de singularidade
-//   em ponto extremo do intervalo, igual aos exemplos da Aula #13/#14).
-// -----------------------------------------------------------------------
-
 
 int main(){
 
