@@ -17,16 +17,7 @@ Estado preditorCorretor4(FuncaoPVI F, Estado S0, double t0, double tf, double dt
 
     // Inicialização: os 3 primeiros passos via Runge-Kutta 4
     for (int i = 0; i < 3 && i < n; i++) {
-        Estado F1 = F(S[i], t[i]);
-        Estado F2 = F(somar(S[i], escalar(dt/2.0, F1)), t[i] + dt/2.0);
-        Estado F3 = F(somar(S[i], escalar(dt/2.0, F2)), t[i] + dt/2.0);
-        Estado F4 = F(somar(S[i], escalar(dt, F3)), t[i] + dt);
-
-        Estado soma(S[i].size());
-        for (size_t j = 0; j < S[i].size(); j++)
-            soma[j] = (F1[j] + 2*F2[j] + 2*F3[j] + F4[j]);
-
-        S[i+1] = somar(S[i], escalar(dt/6.0, soma));
+        S[i+1] = rk4Passo(F, S[i], t[i], dt);
         t[i+1] = t[i] + dt;
     }
 
